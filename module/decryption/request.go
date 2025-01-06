@@ -16,8 +16,8 @@ func getRequestData(c *gin.Context) (*RequestData, error) {
 	return &requestData, nil
 }
 
-func extractDecryptionParameters(content string) ([]byte, []byte, []byte, error) {
-	parts := strings.Split(content, ".")
+func extractDecryptionParameters(encryptedMessage string) ([]byte, []byte, []byte, error) {
+	parts := strings.Split(encryptedMessage, ".")
 	if len(parts) != 3 {
 		return nil, nil, nil, fmt.Errorf("잘못된 암호문 형식입니다.")
 	}
