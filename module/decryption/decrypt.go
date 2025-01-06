@@ -8,7 +8,7 @@ import (
 )
 
 type RequestData struct {
-	Content string `form:"content" json:"content"`
+	EncryptedMessage string `form:"encryptedMessage" json:"encryptedMessage"`
 }
 
 func Decrypt(c *gin.Context) {
@@ -24,7 +24,7 @@ func Decrypt(c *gin.Context) {
 		return
 	}
 
-	aesKey, iv, encryptedContentBytes, err := extractDecryptionParameters(requestData.Content)
+	aesKey, iv, encryptedContentBytes, err := extractDecryptionParameters(requestData.EncryptedMessage)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return
